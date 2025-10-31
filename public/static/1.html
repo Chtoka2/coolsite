@@ -984,7 +984,7 @@ body {
   // Проверяем, что name существует и не является строкой 'null' или 'undefined'
   if (!name || name === 'null' || name === 'undefined') {
     alert('Невозможно определить текущую страницу. Перезагрузите главную.');
-    window.location.href = 'http://localhost:8000/';
+    window.location.href = 'https://coolsite-dqmj.onrender.com/';
   }
 
   console.log('Текущая страница:', name);
@@ -997,7 +997,7 @@ body {
 
     try {
       // 1. Отправляем голос
-      const voteResponse = await fetch('http://localhost:8000/api', {
+      const voteResponse = await fetch('https://coolsite-dqmj.onrender.com/api', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ name: name, vote: vote })
@@ -1008,7 +1008,7 @@ body {
       }
 
       // 2. Получаем следующую страницу
-      const nextResponse = await fetch('http://localhost:8000/api/next');
+      const nextResponse = await fetch('https://coolsite-dqmj.onrender.com/api/next');
       if (!nextResponse.ok) {
         throw new Error('Не удалось получить следующую страницу');
       }
@@ -1016,7 +1016,7 @@ body {
       const { next_page } = await nextResponse.json();
 
       // 3. Редирект на новую страницу (исправлено: строка с шаблоном)
-      window.location.href = `http://localhost:8000/${encodeURIComponent(next_page)}`;
+      window.location.href = `https://coolsite-dqmj.onrender.com/${encodeURIComponent(next_page)}`;
 
     } catch (err) {
       console.error('Ошибка:', err);
@@ -1051,7 +1051,7 @@ body {
     if (!name || name === 'null' || name === 'undefined') return;
 
     try {
-      const response = await fetch(`http://localhost:8000/api/${encodeURIComponent(name)}`);
+      const response = await fetch(`https://coolsite-dqmj.onrender.com/api/${encodeURIComponent(name)}`);
       if (!response.ok) throw new Error('Не удалось загрузить статистику');
       const data = await response.json();
 
