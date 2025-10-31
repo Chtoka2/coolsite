@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Мой сайт</title>
+  <style>
+    body { font-family: sans-serif; }
+    h1 { color: blue; }
+  </style>
+</head>
+<body>
+  <h1>Привет! Это оцениваемый сайт</h1>
+  <p>Он встроен напрямую в index.html.</p>
+  <div id="controls">
+    <button id="like">👍 Нравится</button>
+    <button id="dislike">👎 Не нравится</button>
+  </div>
+  <script>
+    function getCookie(name) {
+      const value = `; ${document.cookie}`;
+      const parts = value.split(`; ${name}=`);
+      if (parts.length === 2) {
+        return parts.pop().split(';').shift();
+      }
+    }
+
+    const name = getCookie('name');
+    if (!name || name === 'null' || name === 'undefined') {
+      alert('Невозможно определить текущую страницу. Перезагрузите главную.');
+      window.location.href = 'http://localhost:8000/';
+    }
+    console.log(name);
+
+    async function sendVote(vote) {
+  if (!name) {
+    alert('Имя страницы не найдено в cookie!');
+    return;
+  }
+
+  try {
+    // 1. Отправляем голос
+    const voteResponse = await fetch('http://localhost:8000/api', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ name: name, vote: vote })
+    });
+
+    if (!voteResponse.ok) {
+      throw new Error('Не удалось отправить голос');
+    }
+    
+// 2. Получаем следующую страницу
+    const nextResponse = await fetch('http://localhost:8000/api/next');
+    if (!nextResponse.ok) {
+      throw new Error('Не удалось получить следующую страницу');
+    }
+
+    const { next_page } = await nextResponse.json();
+
+    // 3. Редирект на новую страницу
+    window.location.href = `http://localhost:8000/${next_page}`;
+  } catch (err) {
+    console.error('Ошибка:', err);
+    alert('Произошла ошибка: ' + err.message);
+  }
+}
+
+    document.getElementById('like').addEventListener('click', () => sendVote('like'));
+    document.getElementById('dislike').addEventListener('click', () => sendVote('dislike'));
+    let statsDiv = document.getElementById('stats');
+  if (!statsDiv) {
+    statsDiv = document.createElement('div');
+    statsDiv.id = 'stats';
+    statsDiv.style.marginTop = '15px';
+    statsDiv.style.padding = '10px';
+    statsDiv.style.backgroundColor = '#f0f0f0';
+    statsDiv.style.borderRadius = '4px';
+    statsDiv.textContent = 'Загрузка статистики...';
+    document.getElementById('controls').parentNode.insertBefore(statsDiv, document.getElementById('controls').nextSibling);
+  }
+
+  // Функция получения и отображения статистики
+  async function fetchStats() {
+    try {
+      const response = await fetch(`http://localhost:8000/api/${name}`);
+      if (!response.ok) throw new Error('Не удалось загрузить статистику');
+      const data = await response.json();
+      statsDiv.innerHTML = `
+        👍 Нравится: <strong>${data.like}</strong>
+        👍 Не нравится: <strong>${data.dislike}</strong>
+      `;
+    } catch (err) {
+      console.error('Ошибка при загрузке статистики:', err);
+      statsDiv.textContent = 'Не удалось загрузить статистику';
+    }
+  }
+
+  // Запрашиваем статистику сразу при загрузке
+  fetchStats();
+
+  // И каждые 3 секунды (3000 мс)
+  setInterval(fetchStats, 3000);
+   </script>  
+</body>
+</html>

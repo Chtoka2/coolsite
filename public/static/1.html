@@ -1,0 +1,1096 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Абстракционизм: Визуальная поэзия в веб-дизайне</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+</head>
+<body>
+    <style>
+        /* Сброс и базовые стили */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 50%, #16213e 100%);
+    color: #f0f0f0;
+    overflow-x: hidden;
+    line-height: 1.6;
+}
+
+/* Навигация как абстрактная композиция */
+.abstract-nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 80px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    mix-blend-mode: difference;
+}
+
+.nav-shape {
+    position: absolute;
+    transition: all 0.5s ease;
+}
+
+.nav-shape.circle {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: linear-gradient(45deg, #ff5e7d, #ff9900);
+    top: 10px;
+    left: 10%;
+}
+
+.nav-shape.triangle {
+    width: 0;
+    height: 0;
+    border-left: 30px solid transparent;
+    border-right: 30px solid transparent;
+    border-bottom: 52px solid #4cc9f0;
+    top: 15px;
+    right: 15%;
+    transform: rotate(15deg);
+}
+
+.nav-shape.square {
+    width: 50px;
+    height: 50px;
+    background: linear-gradient(135deg, #4361ee, #3a0ca3);
+    top: 15px;
+    left: 25%;
+    transform: rotate(45deg);
+}
+
+.nav-shape.organic {
+    width: 70px;
+    height: 40px;
+    border-radius: 50% 20% 40% 30%;
+    background: linear-gradient(45deg, #7209b7, #f72585);
+    top: 20px;
+    right: 30%;
+}
+
+.nav-links {
+    display: flex;
+    list-style: none;
+    gap: 40px;
+    position: relative;
+    z-index: 10;
+}
+
+.nav-links a {
+    color: rgba(255, 255, 255, 0.8);
+    text-decoration: none;
+    font-weight: 300;
+    font-size: 14px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.nav-links a:hover {
+    color: #fff;
+    transform: translateY(-2px);
+}
+
+.nav-links a::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background: currentColor;
+    transition: width 0.3s ease;
+}
+
+.nav-links a:hover::after {
+    width: 100%;
+}
+
+/* Главная композиция */
+.abstract-composition {
+    position: relative;
+    z-index: 1;
+}
+
+.abstract-section {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    position: relative;
+    padding: 100px 5% 50px;
+}
+
+/* Секция введения */
+.intro-section {
+    background: radial-gradient(circle at 20% 50%, rgba(26, 26, 46, 0.8) 0%, rgba(10, 10, 10, 0.9) 70%);
+}
+
+.floating-shapes {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+}
+
+.shape-1 {
+    position: absolute;
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    background: linear-gradient(45deg, rgba(255, 94, 125, 0.2), rgba(255, 153, 0, 0.2));
+    top: 20%;
+    left: 10%;
+    animation: float 15s ease-in-out infinite;
+}
+
+.shape-2 {
+    position: absolute;
+    width: 150px;
+    height: 150px;
+    background: linear-gradient(135deg, rgba(67, 97, 238, 0.2), rgba(58, 12, 163, 0.2));
+    top: 60%;
+    right: 15%;
+    transform: rotate(45deg);
+    animation: float 12s ease-in-out infinite reverse;
+}
+
+.shape-3 {
+    position: absolute;
+    width: 120px;
+    height: 120px;
+    border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+    background: linear-gradient(45deg, rgba(114, 9, 183, 0.2), rgba(247, 37, 133, 0.2));
+    bottom: 20%;
+    left: 20%;
+    animation: morph 20s ease-in-out infinite;
+}
+
+.content-wrapper {
+    max-width: 1200px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 2;
+}
+
+.abstract-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(3rem, 5vw, 6rem);
+    font-weight: 700;
+    margin-bottom: 2rem;
+    background: linear-gradient(45deg, #ff5e7d, #ff9900, #4cc9f0, #4361ee);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-size: 300% 300%;
+    animation: gradientShift 10s ease infinite;
+}
+
+.text-composition {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+}
+
+.abstract-text {
+    font-weight: 300;
+    line-height: 1.8;
+    opacity: 0.9;
+}
+
+.abstract-text.large {
+    font-size: 1.5rem;
+    grid-column: 1 / -1;
+}
+
+.abstract-text.medium {
+    font-size: 1.2rem;
+}
+
+.abstract-text.small {
+    font-size: 1rem;
+}
+
+/* Секция композиции */
+.composition-section {
+    background: linear-gradient(45deg, rgba(26, 26, 46, 0.9) 0%, rgba(22, 33, 62, 0.9) 100%);
+}
+
+.grid-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: 
+        linear-gradient(rgba(76, 201, 240, 0.1) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(76, 201, 240, 0.1) 1px, transparent 1px);
+    background-size: 50px 50px;
+    pointer-events: none;
+}
+
+.asymmetric {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 3rem;
+    align-items: start;
+}
+
+.section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.5rem, 4vw, 4rem);
+    font-weight: 700;
+    margin-bottom: 2rem;
+}
+
+.rotated {
+    transform: rotate(-5deg);
+    writing-mode: vertical-rl;
+    text-orientation: mixed;
+    justify-self: end;
+}
+
+.text-blocks {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.text-block {
+    background: rgba(255, 255, 255, 0.05);
+    padding: 2rem;
+    border-radius: 10px;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.text-block:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.text-block h3 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    color: #4cc9f0;
+}
+
+/* Секция цвета */
+.color-section {
+    background: linear-gradient(135deg, #1a1a2e 0%, #0f3460 50%, #533483 100%);
+    position: relative;
+    overflow: hidden;
+}
+
+.color-field-1 {
+    position: absolute;
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(255, 94, 125, 0.3) 0%, rgba(255, 94, 125, 0) 70%);
+    top: 10%;
+    left: 5%;
+    animation: pulse 8s ease-in-out infinite;
+}
+
+.color-field-2 {
+    position: absolute;
+    width: 400px;
+    height: 400px;
+    background: linear-gradient(45deg, rgba(67, 97, 238, 0.3), rgba(58, 12, 163, 0.3));
+    top: 30%;
+    right: 10%;
+    transform: rotate(45deg);
+    animation: pulse 10s ease-in-out infinite reverse;
+}
+
+.color-field-3 {
+    position: absolute;
+    width: 250px;
+    height: 250px;
+    border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+    background: linear-gradient(45deg, rgba(255, 153, 0, 0.3), rgba(114, 9, 183, 0.3));
+    bottom: 10%;
+    left: 20%;
+    animation: morph 15s ease-in-out infinite;
+}
+
+.color-title {
+    color: #fff;
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.color-text {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+}
+
+.color-text p {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 2rem;
+    border-radius: 10px;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    transition: all 0.3s ease;
+}
+
+.color-text p:hover {
+    transform: scale(1.05);
+    background: rgba(255, 255, 255, 0.15);
+}
+
+/* Секция типографики */
+.typography-section {
+    background: linear-gradient(45deg, #0a0a0a 0%, #1a1a2e 100%);
+}
+
+.typo-composition {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto auto;
+    gap: 3rem;
+    width: 100%;
+}
+
+.typo-element {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+}
+
+.typo-1 {
+    grid-column: 1 / -1;
+    font-size: clamp(4rem, 8vw, 8rem);
+    font-weight: 700;
+    background: linear-gradient(45deg, #ff5e7d, #ff9900, #4cc9f0, #4361ee);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-size: 300% 300%;
+    animation: gradientShift 8s ease infinite;
+}
+
+.letter-group {
+    display: inline-block;
+    margin: 0 1rem;
+    transform: rotate(var(--rotation, 0deg));
+    transition: transform 0.5s ease;
+}
+
+.letter-group:nth-child(1) { --rotation: -5deg; }
+.letter-group:nth-child(2) { --rotation: 3deg; }
+.letter-group:nth-child(3) { --rotation: -2deg; }
+
+.typo-2, .typo-3 {
+    font-size: 1.5rem;
+    font-weight: 300;
+    line-height: 1.6;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 10px;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.3s ease;
+}
+
+.typo-2:hover, .typo-3:hover {
+    transform: translateY(-10px) rotate(1deg);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+}
+
+/* Секция художников */
+.artists-section {
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+    flex-direction: column;
+    justify-content: center;
+    gap: 4rem;
+}
+
+.artist-block {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    width: 100%;
+}
+
+.artist-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    color: #4cc9f0;
+}
+
+.artist-description {
+    font-size: 1.2rem;
+    line-height: 1.8;
+    opacity: 0.9;
+}
+
+.image-placeholder {
+    position: relative;
+    height: 400px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    color: rgba(255, 255, 255, 0.5);
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.placeholder-geometry {
+    position: absolute;
+    width: 80%;
+    height: 80%;
+    background: 
+        linear-gradient(45deg, transparent 49%, #ff5e7d 49%, #ff5e7d 51%, transparent 51%),
+        linear-gradient(-45deg, transparent 49%, #4361ee 49%, #4361ee 51%, transparent 51%);
+    background-size: 50px 50px;
+    opacity: 0.2;
+}
+
+.placeholder-organic {
+    position: absolute;
+    width: 80%;
+    height: 80%;
+    border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+    background: linear-gradient(45deg, #ff9900, #f72585);
+    opacity: 0.2;
+    animation: morph 15s ease-in-out infinite;
+}
+
+/* Секция заключения */
+.conclusion-section {
+    background: linear-gradient(45deg, #0a0a0a 0%, #1a1a2e 100%);
+    justify-content: center;
+    text-align: center;
+}
+
+.conclusion-composition {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.conclusion-text {
+    margin-bottom: 3rem;
+}
+
+.large-text {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 2rem;
+    background: linear-gradient(45deg, #ff5e7d, #ff9900);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.medium-text {
+    font-size: 1.8rem;
+    margin-bottom: 1.5rem;
+    opacity: 0.9;
+}
+
+.small-text {
+    font-size: 1.2rem;
+    opacity: 0.8;
+}
+
+.abstract-signature {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    font-style: italic;
+    color: #4cc9f0;
+    padding: 2rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* Секция обратной связи */
+.feedback-section {
+    min-height: 50vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(135deg, #1a1a2e 0%, #0f3460 100%);
+    position: relative;
+    overflow: hidden;
+}
+
+.diagonal-divider {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100px;
+    background: linear-gradient(135deg, transparent 49%, #0a0a0a 49%, #0a0a0a 51%, transparent 51%);
+    z-index: 2;
+}
+
+.feedback-container {
+    text-align: center;
+    z-index: 3;
+    position: relative;
+}
+
+.feedback-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.5rem;
+    margin-bottom: 3rem;
+    background: linear-gradient(45deg, #ff5e7d, #ff9900, #4cc9f0);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-size: 300% 300%;
+    animation: gradientShift 8s ease infinite;
+}
+
+.feedback-buttons {
+    display: flex;
+    gap: 2rem;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.feedback-btn {
+    position: relative;
+    padding: 1.5rem 3rem;
+    font-size: 1.5rem;
+    border: none;
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    color: #fff;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 500;
+}
+
+.feedback-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.5s ease;
+}
+
+.feedback-btn:hover::before {
+    left: 100%;
+}
+
+.like-btn {
+    border: 2px solid rgba(76, 201, 240, 0.5);
+}
+
+.like-btn:hover {
+    background: rgba(76, 201, 240, 0.2);
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(76, 201, 240, 0.3);
+}
+
+.dislike-btn {
+    border: 2px solid rgba(255, 94, 125, 0.5);
+}
+
+.dislike-btn:hover {
+    background: rgba(255, 94, 125, 0.2);
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(255, 94, 125, 0.3);
+}
+
+.feedback-shapes {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.feedback-shape-1 {
+    position: absolute;
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(76, 201, 240, 0.1) 0%, rgba(76, 201, 240, 0) 70%);
+    top: 20%;
+    left: 10%;
+    animation: float 15s ease-in-out infinite;
+}
+
+.feedback-shape-2 {
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    background: linear-gradient(45deg, rgba(255, 94, 125, 0.1), rgba(255, 153, 0, 0.1));
+    bottom: 30%;
+    right: 15%;
+    transform: rotate(45deg);
+    animation: float 12s ease-in-out infinite reverse;
+}
+
+/* Абстрактные фоновые элементы */
+.background-elements {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.bg-element {
+    position: absolute;
+    opacity: 0.03;
+}
+
+.bg-1 {
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    background: linear-gradient(45deg, #ff5e7d, #ff9900);
+    top: 10%;
+    left: 5%;
+    animation: float 25s ease-in-out infinite;
+}
+
+.bg-2 {
+    width: 400px;
+    height: 400px;
+    background: linear-gradient(45deg, #4361ee, #3a0ca3);
+    top: 40%;
+    right: 10%;
+    transform: rotate(45deg);
+    animation: float 30s ease-in-out infinite reverse;
+}
+
+.bg-3 {
+    width: 250px;
+    height: 250px;
+    border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+    background: linear-gradient(45deg, #7209b7, #f72585);
+    bottom: 20%;
+    left: 15%;
+    animation: morph 40s ease-in-out infinite;
+}
+
+.bg-4 {
+    width: 200px;
+    height: 200px;
+    background: linear-gradient(45deg, #4cc9f0, #4361ee);
+    bottom: 10%;
+    right: 20%;
+    transform: rotate(30deg);
+    animation: float 20s ease-in-out infinite;
+}
+
+/* Анимации */
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0) rotate(0deg);
+    }
+    50% {
+        transform: translateY(-20px) rotate(5deg);
+    }
+}
+
+@keyframes morph {
+    0%, 100% {
+        border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+    }
+    25% {
+        border-radius: 58% 42% 75% 25% / 76% 46% 54% 24%;
+    }
+    50% {
+        border-radius: 50% 50% 33% 67% / 55% 27% 73% 45%;
+    }
+    75% {
+        border-radius: 33% 67% 58% 42% / 63% 68% 32% 37%;
+    }
+}
+
+@keyframes gradientShift {
+    0%, 100% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+}
+
+@keyframes pulse {
+    0%, 100% {
+        transform: scale(1);
+        opacity: 0.3;
+    }
+    50% {
+        transform: scale(1.1);
+        opacity: 0.5;
+    }
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+    .abstract-nav {
+        height: 60px;
+    }
+    
+    .nav-links {
+        gap: 20px;
+    }
+    
+    .nav-links a {
+        font-size: 12px;
+    }
+    
+    .text-composition {
+        grid-template-columns: 1fr;
+    }
+    
+    .asymmetric {
+        grid-template-columns: 1fr;
+    }
+    
+    .rotated {
+        writing-mode: horizontal-tb;
+        transform: rotate(0);
+        justify-self: start;
+    }
+    
+    .color-text {
+        grid-template-columns: 1fr;
+    }
+    
+    .typo-composition {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto;
+    }
+    
+    .typo-1 {
+        font-size: clamp(2.5rem, 6vw, 4rem);
+    }
+    
+    .artist-block {
+        grid-template-columns: 1fr;
+    }
+    
+    .image-placeholder {
+        height: 250px;
+    }
+    
+    .feedback-buttons {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .feedback-btn {
+        width: 200px;
+    }
+    
+    .diagonal-divider {
+        height: 50px;
+    }
+}
+    </style>
+    <!-- Навигация как абстрактная композиция -->
+    <nav class="abstract-nav">
+        <div class="nav-shape circle"></div>
+        <div class="nav-shape triangle"></div>
+        <div class="nav-shape square"></div>
+        <div class="nav-shape organic"></div>
+        <ul class="nav-links">
+            <li><a href="#intro" data-shape="circle">Введение</a></li>
+            <li><a href="#composition" data-shape="triangle">Композиция</a></li>
+            <li><a href="#color" data-shape="square">Цвет</a></li>
+            <li><a href="#typography" data-shape="organic">Типографика</a></li>
+        </ul>
+    </nav>
+
+    <!-- Главная композиция -->
+    <main class="abstract-composition">
+        <!-- Раздел 1: Введение -->
+        <section id="intro" class="abstract-section intro-section">
+            <div class="floating-shapes">
+                <div class="shape-1"></div>
+                <div class="shape-2"></div>
+                <div class="shape-3"></div>
+            </div>
+            <div class="content-wrapper">
+                <h1 class="abstract-title">Абстракция в веб-дизайне</h1>
+                <div class="text-composition">
+                    <p class="abstract-text large">Направление, отказывающееся от точного воспроизведения видимой реальности в пользу форм, линий, цвета и композиции</p>
+                    <p class="abstract-text medium">Корнями уходит в художественный авангард начала XX века (Кандинский, Малевич, Мондриан)</p>
+                    <p class="abstract-text small">Философия — коммуникация через форму и чувство, а не через буквальность</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Раздел 2: Композиция и пространство -->
+        <section id="composition" class="abstract-section composition-section">
+            <div class="grid-overlay"></div>
+            <div class="content-wrapper asymmetric">
+                <h2 class="section-title rotated">Композиция и пространство</h2>
+                <div class="text-blocks">
+                    <div class="text-block">
+                        <h3>Принципы организации</h3>
+                        <p>Может использоваться как симметрия (для создания баланса и гармонии), так и асимметрия (для создания динамики и напряжения)</p>
+                    </div>
+                    <div class="text-block">
+                        <h3>Ритм и баланс</h3>
+                        <p>Ритм может быть музыкальным, пульсирующим или прерывистым. Баланс часто динамический и чувственный</p>
+                    </div>
+                    <div class="text-block">
+                        <h3>Иерархия элементов</h3>
+                        <p>Иерархия создается не размером, а визуальным весом: насыщенным цветом, сложной формой, контрастом</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Раздел 3: Цветовая палитра -->
+        <section id="color" class="abstract-section color-section">
+            <div class="color-field-1"></div>
+            <div class="color-field-2"></div>
+            <div class="color-field-3"></div>
+            <div class="content-wrapper">
+                <h2 class="section-title color-title">Цвет как эмоция</h2>
+                <div class="color-text">
+                    <p>Никаких ограничений. Палитра может быть монохромной, приглушенной или неистово-яркой, в зависимости от выражаемой идеи</p>
+                    <p>Цвет является главным носителем эмоции. Он используется в чистом виде, не привязанный к реалистичным объектам</p>
+                    <p>Контрастность и насыщенность — ключевые инструменты для управления вниманием и создания эмоционального удара</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Раздел 4: Типографика -->
+        <section id="typography" class="abstract-section typography-section">
+            <div class="text-composition typo-composition">
+                <div class="typo-element typo-1">
+                    <span class="letter-group">АБСТ</span>
+                    <span class="letter-group">РАК</span>
+                    <span class="letter-group">ЦИЯ</span>
+                </div>
+                <div class="typo-element typo-2">
+                    <p>Шрифт используется как текстура, ритм или визуальный образ</p>
+                </div>
+                <div class="typo-element typo-3">
+                    <p>Текст может накладываться, дробиться, взаимодействовать с абстрактными элементами</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Раздел 5: Художники -->
+        <section class="abstract-section artists-section">
+            <div class="artist-block">
+                <h2 class="artist-name">Владимир Анатальевич Бойченко</h2>
+                <p class="artist-description">Один из самых известных крымских абстракционистов, председатель творческого союза "Академия абстракционизма". Его работы — это сочетание геометрических форм, цветовых пятен и линий. Художественное образование Бойченко получил в Севастопольской художественной школе. С 2002 года и по настоящее время он работает в Севастопольском художественном музее им. М.П. Крошицкого. В 1990-е годы Бойченко был одним из создателей и вице-президентом Крымского филиала Международной федерации художников и графиков ЮНЕESCO. С 2003 года он является бессменным председателем Творческого союза "Академия абстракционизма". Его персональные выставки, такие как "Я — гений, гений — Я" (1998) и "Размышления о белом" (2014), проходили в Севастополе, Симферополе и Киеве. Работы Владимира Бойченко хранятся в музеях Севастополя, Симферополя, Казани, а также в частных коллекциях в России, Украине и других странах.</p>
+                 <img src = "img1.jpg" alt="Girl in a jacket" width="400" height="500">
+                    <div class="placeholder-geometry"></div>
+                </div>
+            </div>
+            <div class="artist-block">
+                <h2 class="artist-name">Александр Андреев Абрамович</h2>
+                <p class="artist-description">Работы представляют собой сочетание геометрических форм, цветовых пятен и линий, отказываясь от изображения форм реальной действительности. Александр Абрамович Андреев (1958–2016) был крымским художником, работавшим в стиле абстракционизма. С 1971 по 1975 год занимался в частной студии А.А. Фадеева в поселке Магарач Бахчисарайского района. Андреев начал свой творческий путь в 1987 году. Художник совмещал творчество с общественной работой, возглавляя Симферопольское отделение Крымской организации Национального Союза художников Украины, а в 2008 году получил звание заслуженного художника Автономной Республики Крым.</p>
+                <img src = "img2.jpg" alt="Girl in a jacket" width="600" height="400">
+                    <div class="placeholder-organic"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Раздел 6: Заключение -->
+        <section class="abstract-section conclusion-section">
+            <div class="conclusion-composition">
+                <div class="conclusion-text">
+                    <p class="large-text">Абстракция в веб-дизайне — это высшая форма визуальной поэзии</p>
+                    <p class="medium-text">Она превращает сайт из инструмента в произведение искусства</p>
+                    <p class="small-text">Предлагая пользователю не просто решить задачу, а пережить уникальный эстетический опыт</p>
+                </div>
+                <div class="abstract-signature">
+                    <p>Язык чувств</p>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Раздел 7: Обратная связь -->
+        <section class="abstract-section feedback-section">
+            <div class="diagonal-divider"></div>
+            <div class="feedback-shapes">
+                <div class="feedback-shape-1"></div>
+                <div class="feedback-shape-2"></div>
+            </div>
+            <div class="feedback-container">
+                <h2 class="feedback-title">Ваше впечатление</h2>
+                <div class="feedback-buttons" id="controls">
+                    <button class="feedback-btn like-btn" id='like'>
+                        <span>👍</span> Нравится
+                    </button>
+                    <button class="feedback-btn dislike-btn" id="dislike">
+                        <span>👎</span> Не нравится
+                    </button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Абстрактный фон -->
+    <div class="background-elements">
+        <div class="bg-element bg-1"></div>
+        <div class="bg-element bg-2"></div>
+        <div class="bg-element bg-3"></div>
+        <div class="bg-element bg-4"></div>
+    </div>
+
+    <script>
+  function getCookie(name) {
+    const value = `; ${document.cookie}`;
+    const parts = value.split(`; ${name}=`);
+    if (parts.length === 2) {
+      return parts.pop().split(';').shift();
+    }
+    return undefined;
+  }
+
+  const name = getCookie('name');
+
+  // Проверяем, что name существует и не является строкой 'null' или 'undefined'
+  if (!name || name === 'null' || name === 'undefined') {
+    alert('Невозможно определить текущую страницу. Перезагрузите главную.');
+    window.location.href = 'http://localhost:8000/';
+  }
+
+  console.log('Текущая страница:', name);
+
+  async function sendVote(vote) {
+    if (!name || name === 'null' || name === 'undefined') {
+      alert('Имя страницы не найдено в cookie!');
+      return;
+    }
+
+    try {
+      // 1. Отправляем голос
+      const voteResponse = await fetch('http://localhost:8000/api', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name: name, vote: vote })
+      });
+
+      if (!voteResponse.ok) {
+        throw new Error('Не удалось отправить голос');
+      }
+
+      // 2. Получаем следующую страницу
+      const nextResponse = await fetch('http://localhost:8000/api/next');
+      if (!nextResponse.ok) {
+        throw new Error('Не удалось получить следующую страницу');
+      }
+
+      const { next_page } = await nextResponse.json();
+
+      // 3. Редирект на новую страницу (исправлено: строка с шаблоном)
+      window.location.href = `http://localhost:8000/${encodeURIComponent(next_page)}`;
+
+    } catch (err) {
+      console.error('Ошибка:', err);
+      alert('Произошла ошибка: ' + err.message);
+    }
+  }
+
+  // Назначаем обработчики кнопок
+  const likeBtn = document.getElementById('like');
+  const dislikeBtn = document.getElementById('dislike');
+  if (likeBtn) likeBtn.addEventListener('click', () => sendVote('like'));
+  if (dislikeBtn) dislikeBtn.addEventListener('click', () => sendVote('dislike'));
+
+  // Создаём контейнер для статистики, если его нет
+  let statsDiv = document.getElementById('stats');
+  if (!statsDiv) {
+    statsDiv = document.createElement('div');
+    statsDiv.id = 'stats';
+    statsDiv.style.marginTop = '15px';
+    statsDiv.style.padding = '10px';
+    statsDiv.style.backgroundColor = '#f0f0f0';
+    statsDiv.style.borderRadius = '4px';
+    statsDiv.textContent = 'Загрузка статистики...';
+    const controls = document.getElementById('controls');
+    if (controls) {
+      controls.parentNode.insertBefore(statsDiv, controls.nextSibling);
+    }
+  }
+
+  // Функция получения и отображения статистики
+  async function fetchStats() {
+    if (!name || name === 'null' || name === 'undefined') return;
+
+    try {
+      const response = await fetch(`http://localhost:8000/api/${encodeURIComponent(name)}`);
+      if (!response.ok) throw new Error('Не удалось загрузить статистику');
+      const data = await response.json();
+
+      const container = document.createElement('div');
+      container.style.color = 'black';
+      container.style.margin = '0';
+      container.style.padding = '0';
+      container.style.font = 'inherit';
+      container.style.backgroundColor = 'transparent';
+      container.style.border = 'none';
+      container.style.outline = 'none';
+      container.style.textDecoration = 'none';
+      container.style.fontWeight = 'normal';
+      container.style.fontSize = '14px';
+
+      // Исправлено: "Не нравится" вместо второго "Нравится"
+      container.innerHTML = `
+        👍 Нравится: <strong>${data.like || 0}</strong><br>
+        👎 Не нравится: <strong>${data.dislike || 0}</strong>
+      `;
+
+      const strongs = container.querySelectorAll('strong');
+      strongs.forEach(el => {
+        el.style.color = 'black';
+        el.style.fontWeight = 'bold';
+      });
+
+      statsDiv.innerHTML = '';
+      statsDiv.appendChild(container);
+    } catch (err) {
+      console.error('Ошибка при загрузке статистики:', err);
+      statsDiv.textContent = 'Не удалось загрузить статистику';
+      statsDiv.style.color = 'black';
+    }
+  }
+
+  // Загружаем статистику сразу и обновляем каждые 3 секунды
+  fetchStats();
+  setInterval(fetchStats, 3000);
+</script>
+</body>
+</html>
