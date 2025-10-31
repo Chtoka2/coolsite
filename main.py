@@ -92,7 +92,10 @@ def take_reaction(data : VoteRequest):
     return {'like': style.like, 'dislike': style.dislike}
 
 if __name__ == "__main__":
-    uvicorn.run(app='main:app', reload=True, host='localhost', port=8000)
+    import uvicorn
+    import os
+    port = int(os.environ.get("PORT", 8000))
+    uvicorn.run("main:app", host="0.0.0.0", port=port, reload=False)
 """
 // 2. Получаем следующую страницу
     const nextResponse = await fetch('http://localhost:8000/api/next');
