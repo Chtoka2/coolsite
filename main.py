@@ -19,7 +19,7 @@ class Page:
 app = FastAPI()
 
 db = [Page(name = '1', like = 0, dislike = 0), Page(name = '2', like = 0, dislike = 0),
-Page(name = '2', like = 0, dislike = 0)]
+Page(name = '3', like = 0, dislike = 0)]
 
 # Обслуживание статических файлов
 app.mount("/static", StaticFiles(directory="public/static"), name="static")
