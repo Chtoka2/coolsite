@@ -1,26 +1,114 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-  <meta charset="UTF-8">
-  <title>Оценка сайта</title>
-  <style>
-    #controls {
-      text-align: center;
-      padding: 12px;
-      background: #f5f5f5;
-      border-bottom: 1px solid #ddd;
-    }
-    #site-content {
-      padding: 20px;
-      min-height: 500px;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Стили Новороссии - Увидеть Крым иначе</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f9f7f2;
+            color: #333;
+            line-height: 1.6;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        header {
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), 
+                        url('https://source.unsplash.com/random/1600x900/?crimea,architecture') no-repeat center center/cover;
+            height: 100vh;
+            width: 100vw;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: white;
+            padding: 0 20px;
+        }
+        
+        .logo {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+        }
+        
+        .subtitle {
+            font-size: 1.8rem;
+            margin-bottom: 2rem;
+            font-weight: 300;
+        }
+        
+        .description {
+            max-width: 800px;
+            font-size: 1.2rem;
+            margin-bottom: 3rem;
+            line-height: 1.8;
+        }
+        
+        .btn {
+            display: inline-block;
+            background: #d4af37;
+            color: #fff;
+            padding: 15px 40px;
+            border: none;
+            border-radius: 30px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            text-decoration: none;
+        }
+        
+        .btn:hover {
+            background: #b8941f;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+        
+        @media (max-width: 768px) {
+            .logo {
+                font-size: 2.5rem;
+            }
+            
+            .subtitle {
+                font-size: 1.5rem;
+            }
+            
+            .description {
+                font-size: 1rem;
+            }
+        }
+    </style>
 </head>
 <body>
-  <div id="controls">
-    <button id="like">👍 Нравится</button>
-    <button id="dislike">👎 Не нравится</button>
-  </div>
-  <div id="site-content">Загрузка...</div>
+    <header>
+        <h1 class="logo">Стили Новороссии</h1>
+        <h2 class="subtitle">Увидеть Крым иначе</h2>
+        <p class="description">
+            За каждой вывеской, меню и фасадом скрывается история. Мы собрали их все. 
+            Ваша задача — изучить, оценить и найти тот самый дизайн, который говорит с вами на одном языке.
+        </p>
+        <a href="https://coolsite-dqmj.onrender.com/1" class="btn">Начать исследовать</a>
+    </header>
 </body>
 </html>
